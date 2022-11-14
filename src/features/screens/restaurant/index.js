@@ -8,6 +8,8 @@ import {
 } from "react-native";
 import React, { useEffect } from "react";
 import axios from "axios";
+import { useNavigation } from "@react-navigation/native";
+const navigation = useNavigation();
 
 export default function Restaurantscreen() {
   const [restaurant, setrestaurant] = React.useState([]);
@@ -27,6 +29,7 @@ export default function Restaurantscreen() {
             //style={styles.box}
             onPress={() => {
               console.log("restaurant selected");
+              navigation.navigate("Food", { food: item._id });
             }}
           >
             <View style={styles.box}>

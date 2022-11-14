@@ -12,7 +12,17 @@ import axios from "axios";
 
 export default function Foodscreen() {
   const route = useRoute();
-  const food = route.params;
+  const restaurant_id = route.params;
+  console.log(restaurant_id, "restaurant id");
+  const [food, setFood] = React.useState({});
+  useEffect(() => {
+    axios
+      .get(`http://188.166.229.156:3000/restaurant/${restaurant_id}`)
+      .then((response) => {
+        console.log(response.data.food, "get food");
+        setFood(response.data);
+      });
+  }, []);
   return (
     <View>
       <FlatList
