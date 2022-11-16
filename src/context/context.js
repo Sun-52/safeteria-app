@@ -26,11 +26,15 @@ export const UserContextProvider = (props) => {
   useEffect(() => {
     get_user();
   }, []);
+  function set_signedin(status) {
+    setIsRegistered(status);
+  }
   return (
     <UserContext.Provider
       value={{
         user,
         isRegistered,
+        set_signedin,
       }}
     >
       {props.children}

@@ -6,22 +6,26 @@ import {
   TextInput,
   FlatList,
 } from "react-native";
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { useRoute, useNavigation } from "@react-navigation/native";
 import axios from "axios";
 import { AntDesign } from "@expo/vector-icons";
+import { UserContext } from "../../../context/context";
 
 export default function Foodscreen() {
   const navigation = useNavigation();
   const route = useRoute();
   const { restaurant_id } = route.params;
   console.log(restaurant_id, "restaurant id");
+  const { user } = useContext(UserContext);
   const [food, setFood] = React.useState({});
+  const [basket, setbasket] = React.useState({ food_list: [] });
   useEffect(() => {
     axios
       .get(`http://188.166.229.156:3000/restaurant/${restaurant_id}`)
       .then((response) => {
         console.log(response.data.food_list, "get food");
+        console.log(basket, "check basket");
         setFood(response.data.food_list);
       });
   }, []);
@@ -41,6 +45,14 @@ export default function Foodscreen() {
                 <TouchableOpacity
                   onPress={() => {
                     console.log("increase");
+                    axios
+                      .post(
+                        `http://188.166.229.156:3000/food/${user._id}/${item._id}`
+                      )
+                      .then((response) => {
+                        console.log(response.data, "increase food");
+                        setbasket(response.data);
+                      });
                   }}
                 >
                   <AntDesign name="pluscircle" color={"#FF7B2C"} size={22} />
@@ -49,13 +61,25 @@ export default function Foodscreen() {
               <View
                 style={{ marginRight: 10, marginTop: 10, marginBottom: 10 }}
               >
-                <TouchableOpacity
-                  onPress={() => {
-                    console.log("decrease");
-                  }}
-                >
+                {basket?.food_list?.includes(item._id) ? (
+                  <TouchableOpacity
+                    onPress={() => {
+                      console.log("decrease");
+                      axios
+                        .patch(
+                          `http://188.166.229.156:3000/food/${user._id}/${item._id}`
+                        )
+                        .then((response) => {
+                          console.log(response.data, "decrease food");
+                          setbasket(response.data);
+                        });
+                    }}
+                  >
+                    <AntDesign name="minuscircle" color={"#FF7B2C"} size={22} />
+                  </TouchableOpacity>
+                ) : (
                   <AntDesign name="minuscircle" color={"#FF7B2C"} size={22} />
-                </TouchableOpacity>
+                )}
               </View>
             </View>
           </View>

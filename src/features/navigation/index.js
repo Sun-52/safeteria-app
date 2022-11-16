@@ -28,9 +28,11 @@ function MainStackScreen() {
 
 const LoginStack = createNativeStackNavigator();
 function LoginStackScreen() {
-  <LoginStack.Navigator screenOptions={{ headerShown: false }}>
-    <LoginStack.Screen name="Login" component={Loginscreen} />
-  </LoginStack.Navigator>;
+  return (
+    <LoginStack.Navigator screenOptions={{ headerShown: false }}>
+      <LoginStack.Screen name="Login" component={Loginscreen} />
+    </LoginStack.Navigator>
+  );
 }
 
 const Tab = createBottomTabNavigator();
