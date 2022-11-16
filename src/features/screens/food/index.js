@@ -58,6 +58,19 @@ export default function Foodscreen() {
                   <AntDesign name="pluscircle" color={"#FF7B2C"} size={22} />
                 </TouchableOpacity>
               </View>
+              <View>
+                {basket.food_list.includes(item._id) ? (
+                  <Text style={styles.amount}>
+                    {
+                      basket?.amount_of_food[
+                        basket?.food_list.indexOf(item._id)
+                      ]
+                    }
+                  </Text>
+                ) : (
+                  <Text style={styles.amount}>0</Text>
+                )}
+              </View>
               <View
                 style={{ marginRight: 10, marginTop: 10, marginBottom: 10 }}
               >
@@ -107,7 +120,7 @@ const styles = StyleSheet.create({
   box: {
     backgroundColor: "#4A4A6A",
     flexDirection: "row",
-    height: 85,
+    height: 105,
     width: 300,
     marginTop: 15,
     borderRadius: 20,
@@ -129,8 +142,13 @@ const styles = StyleSheet.create({
   add_tab: {
     flexDirection: "column",
     //backgroundColor: "green",
-    height: 60,
+    height: 105,
     flex: 1,
     alignItems: "flex-end",
+  },
+  amount: {
+    color: "white",
+    fontSize: 17,
+    marginRight: 17,
   },
 });
