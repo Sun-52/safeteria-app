@@ -9,9 +9,9 @@ import {
 import React, { useEffect } from "react";
 import axios from "axios";
 import { useNavigation } from "@react-navigation/native";
-const navigation = useNavigation();
 
 export default function Restaurantscreen() {
+  const navigation = useNavigation();
   const [restaurant, setrestaurant] = React.useState([]);
   useEffect(() => {
     axios.get("http://188.166.229.156:3000/restaurant").then((response) => {
@@ -29,7 +29,7 @@ export default function Restaurantscreen() {
             //style={styles.box}
             onPress={() => {
               console.log("restaurant selected");
-              navigation.navigate("Food", { food: item._id });
+              navigation.navigate("Food", { restaurant_id: item._id });
             }}
           >
             <View style={styles.box}>
@@ -70,5 +70,6 @@ const styles = StyleSheet.create({
     fontSize: 17,
     alignSelf: "flex-start",
     marginLeft: 20,
+    marginTop: 5,
   },
 });
