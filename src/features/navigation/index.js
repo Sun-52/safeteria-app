@@ -1,12 +1,20 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import Restaurantscreen from "../screens/restaurant";
-import Foodscreen from "../screens/food";
+import Restaurantscreen from "../screens/restaurant/index.js";
+import Foodscreen from "../screens/food/index.js";
+import Loginscreen from "../screens/login/index.js";
 
 import { Ionicons, Entypo } from "@expo/vector-icons";
 
+import { useContext } from "react";
+import { UserContextProvider, UserContext } from "../../context/context";
+
 export default function Navigation() {
-  return <RootTab />;
+  return (
+    <UserContextProvider>
+      <Nav />
+    </UserContextProvider>
+  );
 }
 const MainStack = createNativeStackNavigator();
 function MainStackScreen() {
@@ -16,6 +24,13 @@ function MainStackScreen() {
       <MainStack.Screen name="Food" component={Foodscreen} />
     </MainStack.Navigator>
   );
+}
+
+const LoginStack = createNativeStackNavigator();
+function LoginStackScreen() {
+  <LoginStack.Navigator screenOptions={{ headerShown: false }}>
+    <LoginStack.Screen name="Login" component={Loginscreen} />
+  </LoginStack.Navigator>;
 }
 
 const Tab = createBottomTabNavigator();
@@ -43,3 +58,22 @@ const RootTab = () => {
     </Tab.Navigator>
   );
 };
+
+const Stack = createNativeStackNavigator();
+export function Nav() {
+  const { isRegistered } = useContext(UserContext);
+  console.log(isRegistered, "nav");
+  return (
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      {isRegistered ? (
+        <Stack.Screen name="Main" component={RootTab} />
+      ) : (
+        <Stack.Screen name="logintab" component={LoginStackScreen} />
+      )}
+      {/* {status === "login" && (
+    <Stack.Screen name="login" component={LoginStackScreen} />
+  )}
+  {status === "home" && <Stack.Screen name="Main" component={RootTab} />} */}
+    </Stack.Navigator>
+  );
+}

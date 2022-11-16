@@ -6,5 +6,13 @@ import {
   TextInput,
 } from "react-native";
 import React from "react";
-
-export default function Loginscreen() {}
+import { useNavigation } from "@react-navigation/native";
+export default function Loginscreen() {
+  const navigation = useNavigation();
+  console.log("test");
+  return (
+    <View style={{ backgroundColor: "green" }}>
+      <Text>TEst</Text>
+    </View>
+  );
+}
