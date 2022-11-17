@@ -24,7 +24,6 @@ export default function Basketscreen() {
         setbasket(response.data);
         console.log(response.data, "get basket");
         setpre_basket(no_basket);
-        console.log(no_basket, "pre basket");
       });
   }, []);
   return (
@@ -42,59 +41,75 @@ export default function Basketscreen() {
       </View>
       <FlatList
         data={basket.food_list}
-        renderItem={({ item }) => (
-          <View style={styles.box}>
-            <Text style={styles.info}>{item.name}</Text>
-            <Text style={styles.price}>{item.price} ฿</Text>
-            <View style={styles.add_tab}>
-              <View
-                style={{ marginRight: 10, marginTop: 10, marginBottom: 10 }}
-              >
-                <TouchableOpacity
-                  onPress={() => {
-                    console.log("increase");
-                    axios
-                      .post(
-                        `http://188.166.229.156:3000/food/${user._id}/${item._id}`
-                      )
-                      .then((response) => {
-                        console.log(response.data, "increase food");
-                        setpre_basket(response.data);
-                      });
-                  }}
+        renderItem={({ item }) => {
+          return (
+            <View style={styles.box}>
+              <Text style={styles.info}>{item.name}</Text>
+              <Text style={styles.price}>{item.price} ฿</Text>
+              <View style={styles.add_tab}>
+                <View
+                  style={{ marginRight: 10, marginTop: 10, marginBottom: 10 }}
                 >
-                  <AntDesign name="pluscircle" color={"#FF7B2C"} size={22} />
-                </TouchableOpacity>
-              </View>
-              <View>
-                <Text style={styles.amount}>{pre_basket?.food_list}</Text>
-              </View>
-              <View
-                style={{ marginRight: 10, marginTop: 10, marginBottom: 10 }}
-              >
-                {pre_basket?.food_list?.includes(item._id) ? (
                   <TouchableOpacity
                     onPress={() => {
-                      console.log("decrease");
+                      console.log("increase");
                       axios
-                        .patch(
+                        .post(
                           `http://188.166.229.156:3000/food/${user._id}/${item._id}`
                         )
                         .then((response) => {
-                          console.log(response.data, "decrease food");
+                          console.log(response.data, "increase food");
                           setpre_basket(response.data);
                         });
                     }}
                   >
-                    <AntDesign name="minuscircle" color={"#FF7B2C"} size={22} />
+                    <AntDesign name="pluscircle" color={"#FF7B2C"} size={22} />
                   </TouchableOpacity>
-                ) : (
-                  <AntDesign name="minuscircle" color={"#FF7B2C"} size={22} />
-                )}
+                </View>
+                <View>
+                  {pre_basket?.food_list?.includes(item._id) ? (
+                    <Text style={styles.amount}>
+                      {
+                        pre_basket?.amount_of_food[
+                          pre_basket?.food_list.indexOf(item._id)
+                        ]
+                      }
+                    </Text>
+                  ) : (
+                    <Text style={styles.amount}>0</Text>
+                  )}
+                </View>
+                <View
+                  style={{ marginRight: 10, marginTop: 10, marginBottom: 10 }}
+                >
+                  {pre_basket?.food_list?.includes(item._id) ? (
+                    <TouchableOpacity
+                      onPress={() => {
+                        console.log("decrease");
+                        axios
+                          .patch(
+                            `http://188.166.229.156:3000/food/${user._id}/${item._id}`
+                          )
+                          .then((response) => {
+                            console.log(response.data, "decrease food");
+                            setpre_basket(response.data);
+                          });
+                      }}
+                    >
+                      <AntDesign
+                        name="minuscircle"
+                        color={"#FF7B2C"}
+                        size={22}
+                      />
+                    </TouchableOpacity>
+                  ) : (
+                    <AntDesign name="minuscircle" color={"#FF7B2C"} size={22} />
+                  )}
+                </View>
               </View>
             </View>
-          </View>
-        )}
+          );
+        }}
       />
     </View>
   );
