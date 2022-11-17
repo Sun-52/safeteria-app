@@ -10,6 +10,7 @@ export const UserContextProvider = (props) => {
   const [isRegistered, setIsRegistered] = useState(false);
   async function get_user() {
     const temp_id = await getData("user_id");
+    console.log(temp_id, "temp_id from context");
     if (temp_id === undefined || temp_id === "") {
       setIsRegistered(false);
     } else {

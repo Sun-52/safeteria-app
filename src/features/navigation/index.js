@@ -3,6 +3,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Restaurantscreen from "../screens/restaurant/index.js";
 import Foodscreen from "../screens/food/index.js";
 import Loginscreen from "../screens/login/index.js";
+import Basketscreen from "../screens/basket/index.js";
 
 import { Ionicons, Entypo } from "@expo/vector-icons";
 
@@ -22,6 +23,7 @@ function MainStackScreen() {
     <MainStack.Navigator screenOptions={{ headerShown: false }}>
       <MainStack.Screen name="Restaurant" component={Restaurantscreen} />
       <MainStack.Screen name="Food" component={Foodscreen} />
+      <MainStack.Screen name="Basket" component={Basketscreen} />
     </MainStack.Navigator>
   );
 }

@@ -9,7 +9,7 @@ import {
 import React, { useContext, useEffect } from "react";
 import { useRoute, useNavigation } from "@react-navigation/native";
 import axios from "axios";
-import { AntDesign } from "@expo/vector-icons";
+import { AntDesign, EvilIcons, FontAwesome5 } from "@expo/vector-icons";
 import { UserContext } from "../../../context/context";
 
 export default function Foodscreen() {
@@ -20,6 +20,7 @@ export default function Foodscreen() {
   const { user } = useContext(UserContext);
   const [food, setFood] = React.useState({});
   const [basket, setbasket] = React.useState({ food_list: [] });
+  const [name, setname] = React.useState("");
   useEffect(() => {
     axios
       .get(`http://188.166.229.156:3000/restaurant/${restaurant_id}`)
@@ -27,11 +28,38 @@ export default function Foodscreen() {
         console.log(response.data.food_list, "get food");
         console.log(basket, "check basket");
         setFood(response.data.food_list);
+        setname(response.data.name);
       });
   }, []);
   return (
     <View style={styles.plain}>
-      <Text style={styles.title}>Choose your dish</Text>
+      <View
+        style={{
+          alignSelf: "flex-start",
+          marginTop: 10,
+          marginLeft: 15,
+          flexDirection: "row",
+        }}
+      >
+        <EvilIcons name="location" color={"#DCDCE4"} size={20} />
+        <Text style={styles.location}>SK Cafeteria | {name}</Text>
+      </View>
+      <Text style={styles.title}>Choose your dish | {name}</Text>
+      <TouchableOpacity
+        style={{
+          alignSelf: "flex-start",
+          marginTop: 10,
+          marginLeft: 15,
+          flexDirection: "row",
+        }}
+        onPress={() => {
+          console.log("redirect to basket");
+          navigation.navigate("Basket", { no_basket: basket });
+        }}
+      >
+        <FontAwesome5 name="shopping-basket" color={"#DCDCE4"} size={20} />
+        <Text style={[styles.location, { marginLeft: 10 }]}>Basket</Text>
+      </TouchableOpacity>
       <FlatList
         data={food}
         renderItem={({ item }) => (
@@ -150,5 +178,12 @@ const styles = StyleSheet.create({
     color: "white",
     fontSize: 17,
     marginRight: 17,
+  },
+  location: {
+    color: "#DCDCE4",
+    fontSize: 19,
+    // marginTop: 10,
+    // marginLeft: 20,
+    //alignSelf: "flex-start",
   },
 });

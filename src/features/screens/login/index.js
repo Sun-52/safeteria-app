@@ -55,7 +55,7 @@ export default function Loginscreen() {
               .then(async (response) => {
                 storeData(response.data._id, "user_id");
                 console.log(await getData("user_id"));
-                set_signedin(ture);
+                set_signedin(true);
               });
           }}
         />

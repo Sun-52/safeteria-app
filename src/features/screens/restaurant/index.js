@@ -6,13 +6,18 @@ import {
   TextInput,
   FlatList,
 } from "react-native";
-import React, { useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import axios from "axios";
 import { useNavigation } from "@react-navigation/native";
+import { EvilIcons } from "@expo/vector-icons";
+import { deleteData } from "../../../async_storage/storage";
+import { Button } from "react-native-web";
+import { UserContext } from "../../../context/context";
 
 export default function Restaurantscreen() {
   const navigation = useNavigation();
   const [restaurant, setrestaurant] = React.useState([]);
+  const { set_signedin } = useContext(UserContext);
   useEffect(() => {
     axios.get("http://188.166.229.156:3000/restaurant").then((response) => {
       setrestaurant(response.data);
@@ -21,6 +26,17 @@ export default function Restaurantscreen() {
   }, []);
   return (
     <View style={styles.plain}>
+      <View
+        style={{
+          alignSelf: "flex-start",
+          marginTop: 10,
+          marginLeft: 15,
+          flexDirection: "row",
+        }}
+      >
+        <EvilIcons name="location" color={"#DCDCE4"} size={20} />
+        <Text style={styles.location}>SK Cafeteria</Text>
+      </View>
       <Text style={styles.title}>Choose your restaurant</Text>
       <FlatList
         data={restaurant}
@@ -38,6 +54,13 @@ export default function Restaurantscreen() {
           </TouchableOpacity>
         )}
       />
+      <Button
+        title="Log out temp"
+        onPress={() => {
+          deleteData("user_id");
+          set_signedin(false);
+        }}
+      />
     </View>
   );
 }
@@ -53,7 +76,7 @@ const styles = StyleSheet.create({
     color: "white",
     fontSize: 20,
     fontWeight: "bold",
-    marginTop: 20,
+    marginTop: 10,
     marginLeft: 15,
     alignSelf: "flex-start",
   },
@@ -71,5 +94,12 @@ const styles = StyleSheet.create({
     alignSelf: "flex-start",
     marginLeft: 20,
     marginTop: 5,
+  },
+  location: {
+    color: "#DCDCE4",
+    fontSize: 19,
+    // marginTop: 10,
+    // marginLeft: 20,
+    //alignSelf: "flex-start",
   },
 });
