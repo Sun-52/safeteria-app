@@ -25,7 +25,7 @@ export default function Foodscreen() {
     axios
       .get(`http://188.166.229.156:3000/restaurant/${restaurant_id}`)
       .then((response) => {
-        console.log(response.data.food_list, "get food");
+        console.log(response.data, "get food");
         console.log(basket, "check basket");
         setFood(response.data.food_list);
         setname(response.data.name);

@@ -11,21 +11,25 @@ import { UserContext } from "../../../context/context";
 import axios from "axios";
 import { Ionicons, AntDesign } from "@expo/vector-icons";
 import { useRoute } from "@react-navigation/native";
+import { useNavigation } from "@react-navigation/native";
 export default function Basketscreen() {
+  const navigation = useNavigation();
   const route = useRoute();
   const { no_basket } = route.params;
   const { user } = useContext(UserContext);
   const [basket, setbasket] = React.useState({});
   const [pre_basket, setpre_basket] = React.useState({});
   useEffect(() => {
+    setpre_basket(no_basket);
+  }, []);
+  useEffect(() => {
     axios
       .get(`http://188.166.229.156:3000/food/${user._id}`)
       .then((response) => {
         setbasket(response.data);
-        console.log(response.data, "get basket");
-        setpre_basket(no_basket);
+        console.log(response.data, "get basket use effect");
       });
-  }, []);
+  }, [pre_basket]);
   return (
     <View style={styles.plain}>
       <View
@@ -36,7 +40,13 @@ export default function Basketscreen() {
           flexDirection: "row",
         }}
       >
-        <Ionicons name="md-chevron-back-circle" size={26} color={"#4A4A6A"} />
+        <TouchableOpacity
+          onPress={() => {
+            navigation.goBack();
+          }}
+        >
+          <Ionicons name="md-chevron-back-circle" size={26} color={"#4A4A6A"} />
+        </TouchableOpacity>
         <Text style={styles.title}>Your order</Text>
       </View>
       <FlatList
@@ -111,6 +121,23 @@ export default function Basketscreen() {
           );
         }}
       />
+      <View>
+        <TouchableOpacity>
+          <View style={styles.button}>
+            <Text
+              style={{
+                color: "white",
+                fontSize: 17,
+                marginBottom: 7,
+                marginRight: 11,
+              }}
+            >
+              Continue
+            </Text>
+            <AntDesign name="arrowright" color={"white"} size={24} />
+          </View>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 }
@@ -170,5 +197,15 @@ const styles = StyleSheet.create({
     // marginTop: 10,
     // marginLeft: 20,
     //alignSelf: "flex-start",
+  },
+  button: {
+    backgroundColor: "#4A4A6A",
+    width: 300,
+    borderRadius: 20,
+    height: 60,
+    alignItems: "center",
+    justifyContent: "center",
+    flexDirection: "row",
+    marginBottom: 15,
   },
 });
