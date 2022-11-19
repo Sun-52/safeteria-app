@@ -122,7 +122,11 @@ export default function Basketscreen() {
         }}
       />
       <View>
-        <TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate("Phase");
+          }}
+        >
           <View style={styles.button}>
             <Text
               style={{
