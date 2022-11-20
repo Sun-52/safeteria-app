@@ -7,6 +7,8 @@ import Basketscreen from "../screens/basket/index.js";
 import Phasescreen from "../screens/phase/index.js";
 import Paymentscreen from "../screens/payment/index.js";
 import Authscreen from "../screens/auth/index.js";
+import Searchscreen from "../screens/Search/index.js";
+import Detailscreen from "../screens/Detail/index.js";
 
 import { Ionicons, Entypo } from "@expo/vector-icons";
 
@@ -30,6 +32,8 @@ function MainStackScreen() {
       <MainStack.Screen name="Phase" component={Phasescreen} />
       <MainStack.Screen name="Payment" component={Paymentscreen} />
       <MainStack.Screen name="Auth" component={Authscreen} />
+      <MainStack.Screen name="Search" component={Searchscreen} />
+      <MainStack.Screen name="Detail" component={Detailscreen} />
     </MainStack.Navigator>
   );
 }

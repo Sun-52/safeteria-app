@@ -9,10 +9,11 @@ import {
 import React, { useEffect, useContext } from "react";
 import axios from "axios";
 import { useNavigation } from "@react-navigation/native";
-import { EvilIcons } from "@expo/vector-icons";
+import { EvilIcons, MaterialCommunityIcons } from "@expo/vector-icons";
 import { deleteData } from "../../../async_storage/storage";
 import { Button } from "react-native-web";
 import { UserContext } from "../../../context/context";
+import AlertInput from "react-native-alert-input";
 
 export default function Restaurantscreen() {
   const navigation = useNavigation();
@@ -28,14 +29,40 @@ export default function Restaurantscreen() {
     <View style={styles.plain}>
       <View
         style={{
-          alignSelf: "flex-start",
-          marginTop: 10,
-          marginLeft: 15,
           flexDirection: "row",
+          alignSelf: "stretch",
+          justifyContent: "space-between",
         }}
       >
-        <EvilIcons name="location" color={"#DCDCE4"} size={20} />
-        <Text style={styles.location}>SK Cafeteria</Text>
+        <View
+          style={{
+            marginVertical: 15,
+            flexDirection: "row",
+            marginLeft: 10,
+          }}
+        >
+          <EvilIcons name="location" color={"#DCDCE4"} size={20} />
+          <Text style={styles.location}>SK Cafeteria</Text>
+        </View>
+        <View
+          style={{
+            marginVertical: 15,
+            flexDirection: "row",
+            marginRight: 10,
+          }}
+        >
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate("Search");
+            }}
+          >
+            <MaterialCommunityIcons
+              name="tag-search-outline"
+              color={"#DCDCE4"}
+              size={24}
+            />
+          </TouchableOpacity>
+        </View>
       </View>
       <Text style={styles.title}>Choose your restaurant</Text>
       <FlatList
