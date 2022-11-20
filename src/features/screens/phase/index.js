@@ -82,6 +82,13 @@ export default function Phasescreen() {
           <TouchableOpacity
             onPress={() => {
               console.log("selected phase", value);
+              axios
+                .patch(`http://188.166.229.156:3000/food/${user._id}`, {
+                  phase: value,
+                })
+                .then((response) => {
+                  console.log(response.data, "add phase");
+                });
             }}
           >
             <View style={styles.button}>
