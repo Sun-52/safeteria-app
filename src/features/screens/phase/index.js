@@ -17,6 +17,7 @@ export default function Phasescreen() {
   const { user } = useContext(UserContext);
   const navigation = useNavigation();
   const [phase, setphase] = React.useState("");
+  const [pre_basket, setpre_basket] = React.useState({});
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState(null);
   const [items, setItems] = useState([
@@ -27,6 +28,14 @@ export default function Phasescreen() {
   ]);
   useEffect(() => {
     console.log(value, "drop list");
+    axios
+      .patch(`http://188.166.229.156:3000/food/${user._id}`, {
+        phase: value,
+      })
+      .then((response) => {
+        console.log(response.data, "add phase");
+        setpre_basket(response.data);
+      });
   }, [value]);
   return (
     <View style={styles.plain}>
@@ -82,13 +91,15 @@ export default function Phasescreen() {
           <TouchableOpacity
             onPress={() => {
               console.log("selected phase", value);
-              axios
-                .patch(`http://188.166.229.156:3000/food/${user._id}`, {
-                  phase: value,
-                })
-                .then((response) => {
-                  console.log(response.data, "add phase");
-                });
+              // axios
+              //   .patch(`http://188.166.229.156:3000/food/${user._id}`, {
+              //     phase: value,
+              //   })
+              //   .then((response) => {
+              //     console.log(response.data, "add phase");
+              //     setpre_basket(response.data);
+              //   });
+              navigation.navigate("Payment", { pre_basket: pre_basket });
             }}
           >
             <View style={styles.button}>
