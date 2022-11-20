@@ -17,12 +17,14 @@ import DropDownPicker from "react-native-dropdown-picker";
 export default function Paymentscreen() {
   const route = useRoute();
   const { pre_basket } = route.params;
+  const navigation = useNavigation();
   console.log(pre_basket, "pre basket");
   const { user } = useContext(UserContext);
   const [basket, setbasket] = React.useState({});
   const price = [];
   var sumprice = 0;
   const [finalprice, setfinalprice] = React.useState("");
+  const [id, setid] = React.useState("");
   useEffect(() => {
     axios
       .get(`http://188.166.229.156:3000/food/${user._id}`)
@@ -119,7 +121,7 @@ export default function Paymentscreen() {
                   height: 20,
                   flexDirection: "row",
                   // justifyContent: "space-between",
-                  marginVertical: 10,
+                  marginVertical: 15,
                 }}
               >
                 <View
@@ -129,7 +131,7 @@ export default function Paymentscreen() {
                     alignItems: "flex-start",
                   }}
                 >
-                  <Text style={{ color: "white", fontSize: 17, marginLeft: 7 }}>
+                  <Text style={{ color: "white", fontSize: 16, marginLeft: 7 }}>
                     {item.name}
                   </Text>
                 </View>
@@ -140,7 +142,7 @@ export default function Paymentscreen() {
                     alignItems: "center",
                   }}
                 >
-                  <Text style={{ color: "white", fontSize: 17 }}>
+                  <Text style={{ color: "white", fontSize: 16 }}>
                     {
                       basket?.amount_of_food[
                         pre_basket?.food_list?.indexOf(item._id)
@@ -156,7 +158,7 @@ export default function Paymentscreen() {
                   }}
                 >
                   <Text
-                    style={{ color: "#FF7B2C", fontSize: 17, marginRight: 7 }}
+                    style={{ color: "#FF7B2C", fontSize: 16, marginRight: 7 }}
                   >
                     {basket?.amount_of_food[
                       pre_basket?.food_list?.indexOf(item._id)
@@ -186,10 +188,11 @@ export default function Paymentscreen() {
               alignItems: "center",
             }}
           >
-            <Text style={{ color: "#FF7B2C", fontSize: 17, marginRight: 7 }}>
+            <Text style={{ color: "white", fontSize: 17, marginLeft: 7 }}>
               Total price
             </Text>
           </View>
+          <View style={{ flex: 1 }}></View>
           <View
             style={{
               flex: 1,
@@ -198,10 +201,37 @@ export default function Paymentscreen() {
             }}
           >
             <Text style={{ color: "#FF7B2C", fontSize: 17, marginRight: 7 }}>
-              {finalprice}
+              {finalprice} ฿
             </Text>
           </View>
         </View>
+      </View>
+      <View style={{ marginTop: 15 }}>
+        <TouchableOpacity
+          onPress={() => {
+            console.log("payment paid");
+            axios
+              .patch(`http://188.166.229.156:3000/qrcode/${basket._id}`)
+              .then((response) => {
+                console.log(response.data, "get que number");
+                setid(response.data._id);
+                navigation.navigate("Auth", { id: response.data._id });
+              });
+          }}
+        >
+          <View style={styles.button}>
+            <Text
+              style={{
+                color: "white",
+                fontSize: 17,
+                marginBottom: 7,
+                marginRight: 11,
+              }}
+            >
+              Pay {finalprice} ฿
+            </Text>
+          </View>
+        </TouchableOpacity>
       </View>
     </View>
   );
