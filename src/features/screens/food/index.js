@@ -9,7 +9,12 @@ import {
 import React, { useContext, useEffect } from "react";
 import { useRoute, useNavigation } from "@react-navigation/native";
 import axios from "axios";
-import { AntDesign, EvilIcons, FontAwesome5 } from "@expo/vector-icons";
+import {
+  AntDesign,
+  EvilIcons,
+  FontAwesome5,
+  Ionicons,
+} from "@expo/vector-icons";
 import { UserContext } from "../../../context/context";
 
 export default function Foodscreen() {
@@ -33,7 +38,7 @@ export default function Foodscreen() {
   }, []);
   return (
     <View style={styles.plain}>
-      <View
+      {/* <View
         style={{
           alignSelf: "flex-start",
           marginTop: 10,
@@ -43,8 +48,25 @@ export default function Foodscreen() {
       >
         <EvilIcons name="location" color={"#DCDCE4"} size={20} />
         <Text style={styles.location}>SK Cafeteria | {name}</Text>
+      </View> */}
+      {/* <Text style={styles.title}>Choose your dish | {name}</Text> */}
+      <View
+        style={{
+          alignSelf: "flex-start",
+          marginTop: 15,
+          marginLeft: 20,
+          flexDirection: "row",
+        }}
+      >
+        <TouchableOpacity
+          onPress={() => {
+            navigation.goBack();
+          }}
+        >
+          <Ionicons name="md-chevron-back-circle" size={26} color={"#4A4A6A"} />
+        </TouchableOpacity>
+        <Text style={styles.title}>Choose your dish | {name}</Text>
       </View>
-      <Text style={styles.title}>Choose your dish | {name}</Text>
       <TouchableOpacity
         style={{
           alignSelf: "flex-start",

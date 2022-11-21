@@ -22,6 +22,7 @@ export default function Searchscreen() {
   const [que, setque] = React.useState("");
   const navigation = useNavigation();
   const [data, setdata] = React.useState([]);
+  const { user } = useContext(UserContext);
   return (
     <View style={styles.plain}>
       <View
@@ -50,22 +51,43 @@ export default function Searchscreen() {
             setque(Text);
           }}
           onSubmitEditing={() => {
-            axios
-              .get(`http://188.166.229.156:3000/que/${que}`)
-              .then((response) => {
-                console.log(response.data, "get order from id");
-                for (let i = 0; i < response.data.amount_of_food.length; i++) {
-                  setdata(
-                    data.push({
-                      _id: response.data.food_list[i]._id,
-                      name: response.data.food_list[i].name,
-                      price: response.data.food_list[i].price,
-                      amount: response.data.amount_of_food[i],
-                    })
-                  );
-                }
-                navigation.navigate("Detail", { basket: data });
-              });
+            if (que.length === 4) {
+              axios
+                .get(`http://188.166.229.156:3000/que/${que}`)
+                .then((response) => {
+                  console.log(response.data, "get order from id");
+                  if (response.data !== null) {
+                    if (user.role === "shop") {
+                      for (
+                        let i = 0;
+                        i < response.data.amount_of_food.length;
+                        i++
+                      ) {
+                        setdata(
+                          data.push({
+                            _id: response.data.food_list[i]._id,
+                            name: response.data.food_list[i].name,
+                            price: response.data.food_list[i].price,
+                            amount: response.data.amount_of_food[i],
+                          })
+                        );
+                      }
+                      setque("");
+                      navigation.navigate("Detail", {
+                        basket: data,
+                        id: response.data._id,
+                      });
+                    } else {
+                      alert("Student can't search for order");
+                      navigation.navigate("Restaurant");
+                    }
+                  } else {
+                    alert("Order not found");
+                  }
+                });
+            } else {
+              alert("Que number shouldn't be more or less than 4 digits");
+            }
           }}
         />
       </View>

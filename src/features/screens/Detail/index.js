@@ -21,7 +21,7 @@ import { UserContext } from "../../../context/context";
 export default function Detailscreen() {
   const navigation = useNavigation();
   const route = useRoute();
-  const { basket } = route.params;
+  const { basket, id } = route.params;
   const [info, setinfo] = React.useState([]);
   return (
     <View style={styles.plain}>
@@ -56,6 +56,29 @@ export default function Detailscreen() {
           );
         }}
       />
+      <TouchableOpacity
+        onPress={() => {
+          axios
+            .patch(`http://188.166.229.156:3000/serve/${id}`)
+            .then((response) => {
+              console.log(response.data, "order served");
+              navigation.navigate("Search");
+            });
+        }}
+      >
+        <View style={styles.button}>
+          <Text
+            style={{
+              color: "white",
+              fontSize: 17,
+              marginBottom: 7,
+              marginRight: 11,
+            }}
+          >
+            Serve
+          </Text>
+        </View>
+      </TouchableOpacity>
     </View>
   );
 }
@@ -116,5 +139,15 @@ const styles = StyleSheet.create({
     // marginTop: 10,
     // marginLeft: 20,
     //alignSelf: "flex-start",
+  },
+  button: {
+    backgroundColor: "green",
+    width: 300,
+    borderRadius: 20,
+    height: 60,
+    alignItems: "center",
+    justifyContent: "center",
+    flexDirection: "row",
+    marginBottom: 15,
   },
 });

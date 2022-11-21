@@ -18,11 +18,12 @@ import AlertInput from "react-native-alert-input";
 export default function Restaurantscreen() {
   const navigation = useNavigation();
   const [restaurant, setrestaurant] = React.useState([]);
-  const { set_signedin } = useContext(UserContext);
+  const { set_signedin, user } = useContext(UserContext);
   useEffect(() => {
     axios.get("http://188.166.229.156:3000/restaurant").then((response) => {
       setrestaurant(response.data);
       console.log(response.data, "get all restaurant");
+      console.log(user, "test user val");
     });
   }, []);
   return (
