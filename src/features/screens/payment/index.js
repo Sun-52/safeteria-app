@@ -13,6 +13,7 @@ import { Ionicons, AntDesign } from "@expo/vector-icons";
 import { useRoute } from "@react-navigation/native";
 import { useNavigation } from "@react-navigation/native";
 import DropDownPicker from "react-native-dropdown-picker";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function Paymentscreen() {
   const route = useRoute();
@@ -49,7 +50,7 @@ export default function Paymentscreen() {
       });
   }, []);
   return (
-    <View style={styles.plain}>
+    <SafeAreaView style={styles.plain}>
       <View
         style={{
           alignSelf: "flex-start",
@@ -170,7 +171,6 @@ export default function Paymentscreen() {
             );
           }}
         />
-        <hr style={{ background: "#666687", color: "#666687", width: 290 }} />
         <View
           style={{
             alignSelf: "center",
@@ -233,7 +233,7 @@ export default function Paymentscreen() {
           </View>
         </TouchableOpacity>
       </View>
-    </View>
+    </SafeAreaView>
   );
 }
 
@@ -251,6 +251,7 @@ const styles = StyleSheet.create({
     // marginTop: 20,
     marginLeft: 10,
     alignSelf: "flex-start",
+    fontFamily: "Roboto",
   },
   box: {
     backgroundColor: "#4A4A6A",
@@ -266,6 +267,7 @@ const styles = StyleSheet.create({
     alignSelf: "flex-start",
     marginLeft: 20,
     marginTop: 5,
+    fontFamily: "Roboto",
   },
   price: {
     color: "#FF7B2C",
@@ -273,6 +275,7 @@ const styles = StyleSheet.create({
     alignSelf: "flex-start",
     marginLeft: 20,
     marginTop: 5,
+    fontFamily: "Roboto",
   },
   add_tab: {
     flexDirection: "column",
@@ -285,6 +288,7 @@ const styles = StyleSheet.create({
     color: "white",
     fontSize: 17,
     marginRight: 17,
+    fontFamily: "Roboto",
   },
   location: {
     color: "#DCDCE4",
@@ -292,6 +296,7 @@ const styles = StyleSheet.create({
     // marginTop: 10,
     // marginLeft: 20,
     //alignSelf: "flex-start",
+    fontFamily: "Roboto",
   },
   button: {
     backgroundColor: "#4A4A6A",

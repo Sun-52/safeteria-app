@@ -6,11 +6,11 @@ import { UserContextProvider } from "./src/context/context.js";
 
 export default function App() {
   return (
-    <UserContextProvider>
-      <NavigationContainer>
+    <NavigationContainer>
+      <UserContextProvider>
         <Navigation />
-      </NavigationContainer>
-    </UserContextProvider>
+      </UserContextProvider>
+    </NavigationContainer>
   );
 }
 

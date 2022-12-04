@@ -12,6 +12,7 @@ import { useNavigation } from "@react-navigation/native";
 import { storeData } from "../../../async_storage/storage";
 import { useContext } from "react";
 import { UserContext } from "../../../context/context";
+import { SafeAreaView } from "react-native-safe-area-context";
 export default function Loginscreen() {
   const { set_signedin } = useContext(UserContext);
   const [pageStatus, setpageStatus] = React.useState("");
@@ -20,7 +21,7 @@ export default function Loginscreen() {
   const [id, setId] = React.useState("");
   if (pageStatus == "") {
     return (
-      <View style={styles.plain}>
+      <SafeAreaView style={styles.plain}>
         <Text style={styles.title}>Login to your account</Text>
         <TouchableOpacity
           style={styles.button}
@@ -38,7 +39,7 @@ export default function Loginscreen() {
         >
           <Text style={styles.text}>Log in</Text>
         </TouchableOpacity>
-      </View>
+      </SafeAreaView>
     );
   }
   if (pageStatus == "log_in") {
@@ -76,6 +77,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "bold",
     marginBottom: 45,
+    fontFamily: "Roboto",
   },
   box: {
     backgroundColor: "#4A4A6A",
@@ -91,6 +93,7 @@ const styles = StyleSheet.create({
     alignSelf: "flex-start",
     marginLeft: 20,
     marginTop: 5,
+    fontFamily: "Roboto",
   },
   button: {
     borderColor: "green",
@@ -105,6 +108,7 @@ const styles = StyleSheet.create({
   text: {
     color: "white",
     fontSize: 17,
+    fontFamily: "Roboto",
   },
   input: {
     fontSize: 14,
@@ -113,5 +117,6 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     backgroundColor: "#4A4A6A",
     color: "white",
+    fontFamily: "Roboto",
   },
 });

@@ -17,6 +17,7 @@ import {
 import { deleteData } from "../../../async_storage/storage";
 import { Button } from "react-native-web";
 import { UserContext } from "../../../context/context";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function Searchscreen() {
   const [que, setque] = React.useState("");
@@ -24,7 +25,7 @@ export default function Searchscreen() {
   const [data, setdata] = React.useState([]);
   const { user } = useContext(UserContext);
   return (
-    <View style={styles.plain}>
+    <SafeAreaView style={styles.plain}>
       <View
         style={{
           alignSelf: "flex-start",
@@ -91,7 +92,7 @@ export default function Searchscreen() {
           }}
         />
       </View>
-    </View>
+    </SafeAreaView>
   );
 }
 
@@ -109,6 +110,7 @@ const styles = StyleSheet.create({
     // marginTop: 20,
     marginLeft: 10,
     alignSelf: "flex-start",
+    fontFamily: "Roboto",
   },
   box: {
     backgroundColor: "#4A4A6A",
@@ -126,6 +128,7 @@ const styles = StyleSheet.create({
     alignSelf: "flex-start",
     marginLeft: 20,
     marginTop: 5,
+    fontFamily: "Roboto",
   },
   price: {
     color: "#FF7B2C",
@@ -133,6 +136,7 @@ const styles = StyleSheet.create({
     alignSelf: "flex-start",
     marginLeft: 20,
     marginTop: 5,
+    fontFamily: "Roboto",
   },
   add_tab: {
     flexDirection: "column",
@@ -145,6 +149,7 @@ const styles = StyleSheet.create({
     color: "white",
     fontSize: 17,
     marginRight: 17,
+    fontFamily: "Roboto",
   },
   location: {
     color: "#DCDCE4",
@@ -152,6 +157,7 @@ const styles = StyleSheet.create({
     marginBottom: 40,
     // marginLeft: 20,
     //alignSelf: "flex-start",
+    fontFamily: "Roboto",
   },
   button: {
     backgroundColor: "#4A4A6A",
@@ -170,5 +176,6 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     backgroundColor: "#4A4A6A",
     color: "white",
+    fontFamily: "Roboto",
   },
 });

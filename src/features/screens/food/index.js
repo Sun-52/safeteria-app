@@ -16,6 +16,7 @@ import {
   Ionicons,
 } from "@expo/vector-icons";
 import { UserContext } from "../../../context/context";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function Foodscreen() {
   const navigation = useNavigation();
@@ -37,7 +38,7 @@ export default function Foodscreen() {
       });
   }, []);
   return (
-    <View style={styles.plain}>
+    <SafeAreaView style={styles.plain}>
       {/* <View
         style={{
           alignSelf: "flex-start",
@@ -148,7 +149,7 @@ export default function Foodscreen() {
           </View>
         )}
       />
-    </View>
+    </SafeAreaView>
   );
 }
 
@@ -166,6 +167,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
     marginLeft: 15,
     alignSelf: "flex-start",
+    fontFamily: "Roboto",
   },
   box: {
     backgroundColor: "#4A4A6A",
@@ -181,6 +183,7 @@ const styles = StyleSheet.create({
     alignSelf: "flex-start",
     marginLeft: 20,
     marginTop: 5,
+    fontFamily: "Roboto",
   },
   price: {
     color: "#FF7B2C",
@@ -188,6 +191,7 @@ const styles = StyleSheet.create({
     alignSelf: "flex-start",
     marginLeft: 20,
     marginTop: 5,
+    fontFamily: "Roboto",
   },
   add_tab: {
     flexDirection: "column",
@@ -200,6 +204,7 @@ const styles = StyleSheet.create({
     color: "white",
     fontSize: 17,
     marginRight: 17,
+    fontFamily: "Roboto",
   },
   location: {
     color: "#DCDCE4",
@@ -207,5 +212,6 @@ const styles = StyleSheet.create({
     // marginTop: 10,
     // marginLeft: 20,
     //alignSelf: "flex-start",
+    fontFamily: "Roboto",
   },
 });

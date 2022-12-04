@@ -26,7 +26,14 @@ export default function Authscreen() {
   return (
     <View style={styles.plain}>
       <View style={styles.box}>
-        <Text style={{ color: "white", fontSize: 19, fontWeight: "bold" }}>
+        <Text
+          style={{
+            color: "white",
+            fontSize: 19,
+            fontWeight: "bold",
+            fontFamily: "Roboto",
+          }}
+        >
           {que}
         </Text>
       </View>
@@ -49,6 +56,7 @@ const styles = StyleSheet.create({
     // marginTop: 20,
     marginLeft: 10,
     alignSelf: "flex-start",
+    fontFamily: "Roboto",
   },
   box: {
     backgroundColor: "#4A4A6A",
@@ -66,6 +74,7 @@ const styles = StyleSheet.create({
     alignSelf: "flex-start",
     marginLeft: 20,
     marginTop: 5,
+    fontFamily: "Roboto",
   },
   price: {
     color: "#FF7B2C",
@@ -73,6 +82,7 @@ const styles = StyleSheet.create({
     alignSelf: "flex-start",
     marginLeft: 20,
     marginTop: 5,
+    fontFamily: "Roboto",
   },
   add_tab: {
     flexDirection: "column",
@@ -85,6 +95,7 @@ const styles = StyleSheet.create({
     color: "white",
     fontSize: 17,
     marginRight: 17,
+    fontFamily: "Roboto",
   },
   location: {
     color: "#DCDCE4",
@@ -92,6 +103,7 @@ const styles = StyleSheet.create({
     marginTop: 40,
     // marginLeft: 20,
     //alignSelf: "flex-start",
+    fontFamily: "Roboto",
   },
   button: {
     backgroundColor: "#4A4A6A",

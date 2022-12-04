@@ -13,6 +13,7 @@ import { Ionicons, AntDesign } from "@expo/vector-icons";
 import { useRoute } from "@react-navigation/native";
 import { useNavigation } from "@react-navigation/native";
 import DropDownPicker from "react-native-dropdown-picker";
+import { SafeAreaView } from "react-native-safe-area-context";
 export default function Phasescreen() {
   const { user } = useContext(UserContext);
   const navigation = useNavigation();
@@ -38,7 +39,7 @@ export default function Phasescreen() {
       });
   }, [value]);
   return (
-    <View style={styles.plain}>
+    <SafeAreaView style={styles.plain}>
       <View
         style={{
           alignSelf: "flex-start",
@@ -69,10 +70,11 @@ export default function Phasescreen() {
           textStyle={{ color: "white", fontSize: 17 }}
           dropDownContainerStyle={{
             backgroundColor: "#4A4A6A",
+            width: 300,
           }}
         />
       </View>
-      <View style={{ marginTop: 638 }}>
+      <View>
         {value === null ? (
           <View style={styles.button}>
             <Text
@@ -118,7 +120,7 @@ export default function Phasescreen() {
           </TouchableOpacity>
         )}
       </View>
-    </View>
+    </SafeAreaView>
   );
 }
 const styles = StyleSheet.create({
@@ -135,6 +137,7 @@ const styles = StyleSheet.create({
     // marginTop: 20,
     marginLeft: 10,
     alignSelf: "flex-start",
+    fontFamily: "Roboto",
   },
   box: {
     backgroundColor: "#4A4A6A",
@@ -150,6 +153,7 @@ const styles = StyleSheet.create({
     alignSelf: "flex-start",
     marginLeft: 20,
     marginTop: 5,
+    fontFamily: "Roboto",
   },
   price: {
     color: "#FF7B2C",
@@ -157,6 +161,7 @@ const styles = StyleSheet.create({
     alignSelf: "flex-start",
     marginLeft: 20,
     marginTop: 5,
+    fontFamily: "Roboto",
   },
   add_tab: {
     flexDirection: "column",
@@ -169,6 +174,7 @@ const styles = StyleSheet.create({
     color: "white",
     fontSize: 17,
     marginRight: 17,
+    fontFamily: "Roboto",
   },
   location: {
     color: "#DCDCE4",
@@ -176,6 +182,7 @@ const styles = StyleSheet.create({
     // marginTop: 10,
     // marginLeft: 20,
     //alignSelf: "flex-start",
+    fontFamily: "Roboto",
   },
   button: {
     backgroundColor: "#4A4A6A",

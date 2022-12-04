@@ -31,13 +31,7 @@ export const UserContextProvider = (props) => {
     setIsRegistered(status);
   }
   return (
-    <UserContext.Provider
-      value={{
-        user,
-        isRegistered,
-        set_signedin,
-      }}
-    >
+    <UserContext.Provider value={{ user, isRegistered, set_signedin }}>
       {props.children}
     </UserContext.Provider>
   );

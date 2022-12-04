@@ -13,7 +13,7 @@ import { EvilIcons, MaterialCommunityIcons } from "@expo/vector-icons";
 import { deleteData } from "../../../async_storage/storage";
 import { Button } from "react-native-web";
 import { UserContext } from "../../../context/context";
-import AlertInput from "react-native-alert-input";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function Restaurantscreen() {
   const navigation = useNavigation();
@@ -27,7 +27,7 @@ export default function Restaurantscreen() {
     });
   }, []);
   return (
-    <View style={styles.plain}>
+    <SafeAreaView style={styles.plain}>
       <View
         style={{
           flexDirection: "row",
@@ -82,14 +82,14 @@ export default function Restaurantscreen() {
           </TouchableOpacity>
         )}
       />
-      <Button
+      {/* <Button
         title="Log out temp"
         onPress={() => {
           deleteData("user_id");
           set_signedin(false);
         }}
-      />
-    </View>
+      /> */}
+    </SafeAreaView>
   );
 }
 
@@ -107,6 +107,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginLeft: 15,
     alignSelf: "flex-start",
+    fontFamily: "Roboto",
   },
   box: {
     backgroundColor: "#4A4A6A",
@@ -122,6 +123,7 @@ const styles = StyleSheet.create({
     alignSelf: "flex-start",
     marginLeft: 20,
     marginTop: 5,
+    fontFamily: "Roboto",
   },
   location: {
     color: "#DCDCE4",
@@ -129,5 +131,6 @@ const styles = StyleSheet.create({
     // marginTop: 10,
     // marginLeft: 20,
     //alignSelf: "flex-start",
+    fontFamily: "Roboto",
   },
 });
