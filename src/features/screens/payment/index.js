@@ -26,10 +26,12 @@ export default function Paymentscreen() {
   var sumprice = 0;
   const [finalprice, setfinalprice] = React.useState("");
   const [id, setid] = React.useState("");
+  console.log(user, "test user check");
   useEffect(() => {
     axios
       .get(`http://188.166.229.156:3000/food/${user._id}`)
       .then((response) => {
+        console.log(response.data._id, "set basket");
         console.log(response.data, "get order");
         setbasket(response.data);
         for (let i = 0; i < pre_basket.amount_of_food.length; i++) {
@@ -211,7 +213,9 @@ export default function Paymentscreen() {
           onPress={() => {
             console.log("payment paid");
             axios
-              .patch(`http://188.166.229.156:3000/qrcode/${basket._id}`)
+              .patch(
+                `http://188.166.229.156:3000/user/pay/${user._id}/${basket._id}?amount=${finalprice}`
+              )
               .then((response) => {
                 console.log(response.data, "get que number");
                 setid(response.data._id);

@@ -14,7 +14,7 @@ import { useContext } from "react";
 import { UserContext } from "../../../context/context";
 import { SafeAreaView } from "react-native-safe-area-context";
 export default function Loginscreen() {
-  const { set_signedin } = useContext(UserContext);
+  const { logIn, signUp } = useContext(UserContext);
   const [pageStatus, setpageStatus] = React.useState("");
   const [name, setName] = React.useState("");
   const [email, setEmail] = React.useState("");
@@ -47,19 +47,51 @@ export default function Loginscreen() {
       <View style={styles.plain}>
         <TextInput
           style={styles.input}
-          placeholder="id..."
-          value={id}
-          onChangeText={(Text) => setId(Text)}
+          placeholder="email"
+          value={email}
+          onChangeText={(Text) => setEmail(Text)}
           onSubmitEditing={() => {
-            axios
-              .get(`http://188.166.229.156:3000/user/${id}`)
-              .then(async (response) => {
-                storeData(response.data._id, "user_id");
-                console.log(await getData("user_id"));
-                set_signedin(true);
-              });
+            logIn(email);
           }}
+          placeholderTextColor={"white"}
         />
+      </View>
+    );
+  }
+  if (pageStatus == "sign_in") {
+    return (
+      <View style={styles.plain}>
+        <TextInput
+          style={styles.input}
+          placeholder="name..."
+          value={name}
+          onChangeText={(Text) => setName(Text)}
+          placeholderTextColor={"white"}
+        />
+        <TextInput
+          style={styles.input}
+          placeholder="email..."
+          value={email}
+          onChangeText={(Text) => {
+            setEmail(Text);
+          }}
+          placeholderTextColor={"white"}
+        />
+        {email !== "" && name !== "" ? (
+          <TouchableOpacity
+            onPress={() => {
+              signUp(email, name);
+            }}
+          >
+            <View style={styles.button}>
+              <Text style={styles.text}>Sign up</Text>
+            </View>
+          </TouchableOpacity>
+        ) : (
+          <View style={styles.button}>
+            <Text style={styles.text}>Sign up</Text>
+          </View>
+        )}
       </View>
     );
   }
@@ -118,5 +150,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#4A4A6A",
     color: "white",
     fontFamily: "Roboto",
+    marginVertical: 10,
   },
 });

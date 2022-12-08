@@ -82,6 +82,14 @@ export default function Restaurantscreen() {
           </TouchableOpacity>
         )}
       />
+      <TouchableOpacity
+        onPress={() => {
+          deleteData("user_id");
+          set_signedin(false);
+        }}
+      >
+        <Text style={{ color: "white" }}>Log out temp</Text>
+      </TouchableOpacity>
       {/* <Button
         title="Log out temp"
         onPress={() => {

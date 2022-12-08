@@ -17,9 +17,9 @@ import { UserContextProvider, UserContext } from "../../context/context";
 
 export default function Navigation() {
   return (
-    // <UserContextProvider>
-    <Nav />
-    // {/* </UserContextProvider> */}
+    <UserContextProvider>
+      <Nav />
+    </UserContextProvider>
   );
 }
 const MainStack = createNativeStackNavigator();
