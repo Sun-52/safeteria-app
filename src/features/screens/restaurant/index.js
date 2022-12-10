@@ -83,20 +83,21 @@ export default function Restaurantscreen() {
         )}
       />
       <TouchableOpacity
+        style={styles.button}
         onPress={() => {
           deleteData("user_id");
           set_signedin(false);
         }}
       >
-        <Text style={{ color: "white" }}>Log out temp</Text>
+        <Text
+          style={{
+            color: "white",
+            fontSize: 17,
+          }}
+        >
+          Log out from account
+        </Text>
       </TouchableOpacity>
-      {/* <Button
-        title="Log out temp"
-        onPress={() => {
-          deleteData("user_id");
-          set_signedin(false);
-        }}
-      /> */}
     </SafeAreaView>
   );
 }
@@ -140,5 +141,15 @@ const styles = StyleSheet.create({
     // marginLeft: 20,
     //alignSelf: "flex-start",
     fontFamily: "Roboto",
+  },
+  button: {
+    backgroundColor: "#4A4A6A",
+    width: 300,
+    borderRadius: 20,
+    height: 60,
+    alignItems: "center",
+    justifyContent: "center",
+    flexDirection: "row",
+    marginBottom: 15,
   },
 });

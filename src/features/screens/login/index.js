@@ -13,6 +13,7 @@ import { storeData } from "../../../async_storage/storage";
 import { useContext } from "react";
 import { UserContext } from "../../../context/context";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { Ionicons } from "@expo/vector-icons";
 export default function Loginscreen() {
   const { logIn, signUp } = useContext(UserContext);
   const [pageStatus, setpageStatus] = React.useState("");
@@ -22,7 +23,9 @@ export default function Loginscreen() {
   if (pageStatus == "") {
     return (
       <SafeAreaView style={styles.plain}>
-        <Text style={styles.title}>Login to your account</Text>
+        <Text style={[styles.title, { marginTop: 15 }]}>
+          Login to your account
+        </Text>
         <TouchableOpacity
           style={styles.button}
           onPress={() => {
@@ -44,7 +47,28 @@ export default function Loginscreen() {
   }
   if (pageStatus == "log_in") {
     return (
-      <View style={styles.plain}>
+      <SafeAreaView style={styles.plain}>
+        <View
+          style={{
+            alignSelf: "flex-start",
+            marginTop: 15,
+            marginLeft: 20,
+            flexDirection: "row",
+          }}
+        >
+          <TouchableOpacity
+            onPress={() => {
+              setpageStatus("");
+            }}
+          >
+            <Ionicons
+              name="md-chevron-back-circle"
+              size={26}
+              color={"#4A4A6A"}
+            />
+          </TouchableOpacity>
+          <Text style={styles.title}>Log in to your account</Text>
+        </View>
         <TextInput
           style={styles.input}
           placeholder="email"
@@ -55,12 +79,33 @@ export default function Loginscreen() {
           }}
           placeholderTextColor={"white"}
         />
-      </View>
+      </SafeAreaView>
     );
   }
   if (pageStatus == "sign_in") {
     return (
-      <View style={styles.plain}>
+      <SafeAreaView style={styles.plain}>
+        <View
+          style={{
+            alignSelf: "flex-start",
+            marginTop: 15,
+            marginLeft: 20,
+            flexDirection: "row",
+          }}
+        >
+          <TouchableOpacity
+            onPress={() => {
+              setpageStatus("");
+            }}
+          >
+            <Ionicons
+              name="md-chevron-back-circle"
+              size={26}
+              color={"#4A4A6A"}
+            />
+          </TouchableOpacity>
+          <Text style={styles.title}>Create your account</Text>
+        </View>
         <TextInput
           style={styles.input}
           placeholder="name..."
@@ -92,7 +137,7 @@ export default function Loginscreen() {
             <Text style={styles.text}>Sign up</Text>
           </View>
         )}
-      </View>
+      </SafeAreaView>
     );
   }
 }
@@ -101,8 +146,8 @@ const styles = StyleSheet.create({
   plain: {
     backgroundColor: "#32324D",
     flex: 1,
-    justifyContent: "center",
     alignItems: "center",
+    flexDirection: "column",
   },
   title: {
     color: "white",
