@@ -134,7 +134,15 @@ export default function Paymentscreen() {
                     alignItems: "flex-start",
                   }}
                 >
-                  <Text style={{ color: "white", fontSize: 16, marginLeft: 7 }}>
+                  <Text
+                    style={{
+                      color: "white",
+                      fontSize: 16,
+                      marginLeft: 7,
+                      fontFamily: "Roboto",
+                    }}
+                    numberOfLines={2}
+                  >
                     {item.name}
                   </Text>
                 </View>
@@ -161,7 +169,12 @@ export default function Paymentscreen() {
                   }}
                 >
                   <Text
-                    style={{ color: "#FF7B2C", fontSize: 16, marginRight: 7 }}
+                    style={{
+                      color: "#FF7B2C",
+                      fontSize: 16,
+                      marginRight: 7,
+                      fontFamily: "Roboto",
+                    }}
                   >
                     {basket?.amount_of_food[
                       pre_basket?.food_list?.indexOf(item._id)
@@ -190,7 +203,14 @@ export default function Paymentscreen() {
               alignItems: "center",
             }}
           >
-            <Text style={{ color: "white", fontSize: 17, marginLeft: 7 }}>
+            <Text
+              style={{
+                color: "white",
+                fontSize: 17,
+                marginLeft: 7,
+                fontFamily: "Roboto",
+              }}
+            >
               Total price
             </Text>
           </View>
@@ -202,7 +222,14 @@ export default function Paymentscreen() {
               alignItems: "center",
             }}
           >
-            <Text style={{ color: "#FF7B2C", fontSize: 17, marginRight: 7 }}>
+            <Text
+              style={{
+                color: "#FF7B2C",
+                fontSize: 17,
+                marginRight: 7,
+                fontFamily: "Roboto",
+              }}
+            >
               {finalprice} ฿
             </Text>
           </View>

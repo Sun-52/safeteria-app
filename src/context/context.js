@@ -12,7 +12,8 @@ export const UserContextProvider = (props) => {
     const tempId = await getData("user_id");
     console.log(tempId, "test temp ids");
     console.log(user, "test user");
-    if (tempId !== undefined || tempId !== "") {
+    if (typeof tempId !== "undefined" || tempId !== "") {
+      console.log("check register func activated");
       setIsRegistered(true);
       axios
         .get(`http://188.166.229.156:3000/user/${tempId}`)
@@ -20,6 +21,8 @@ export const UserContextProvider = (props) => {
           console.log(response.data, "test useeffect users");
           setuser(response.data);
         });
+    } else {
+      console.log("user is not registereds");
     }
   }
   useEffect(() => {
@@ -40,7 +43,7 @@ export const UserContextProvider = (props) => {
       });
   }
 
-  function singUp(email, name) {
+  function signUp(email, name) {
     axios
       .post("http://188.166.229.156:3000/user/auth", {
         email: email,
@@ -56,7 +59,7 @@ export const UserContextProvider = (props) => {
   }
   return (
     <UserContext.Provider
-      value={{ user, isRegistered, set_signedin, logIn, singUp }}
+      value={{ user, isRegistered, set_signedin, logIn, signUp }}
     >
       {props.children}
     </UserContext.Provider>
