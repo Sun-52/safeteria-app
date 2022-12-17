@@ -1,22 +1,21 @@
 {
   "expo": {
-    "name": "safeteria-app",
-    "slug": "safeteria-app",
+    "name": "Safeteria App",
+    "slug": "Safeteria-app",
+    "description": "Sunny and the gang research",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/Nutcha-icon.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/Nutcha.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true
     },
