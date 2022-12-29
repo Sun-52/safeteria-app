@@ -5,10 +5,10 @@
     "description": "Sunny and the gang research",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/Nutcha-icon.png",
+    "icon": "./assets/Safeteria-logo.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/Nutcha.png",
+      "image": "./assets/Safeteria-load.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },

@@ -21,11 +21,28 @@ export default function Phasescreen() {
   const [pre_basket, setpre_basket] = React.useState({});
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState(null);
+  const [people, setPeople] = useState([0, 0, 0, 0, 0]);
   const [items, setItems] = useState([
-    { label: "11:00-11:10", value: "11:00-11:10" },
-    { label: "11:10-11:20", value: "11:10-11:20" },
-    { label: "11:20-11:30", value: "11:20-11:30" },
-    { label: "11:30-11:40", value: "11:30-11:40" },
+    {
+      label: `11:00-11:10 - ${people[0]} people`,
+      value: "11:00-11:10",
+    },
+    {
+      label: `11:10-11:20 - ${people[1]} people`,
+      value: "11:10-11:20",
+    },
+    {
+      label: `11:20-11:30 - ${people[2]} people`,
+      value: "11:20-11:30",
+    },
+    {
+      label: `11:30-11:40 - ${people[3]} people`,
+      value: "11:30-11:40",
+    },
+    {
+      label: `11:40-11:50 - ${people[4]} people`,
+      value: "11:40-11:50",
+    },
   ]);
   useEffect(() => {
     console.log(value, "drop list");
@@ -38,6 +55,33 @@ export default function Phasescreen() {
         setpre_basket(response.data);
       });
   }, [value]);
+  useEffect(() => {
+    axios.get("http://188.166.229.156:3000/food/get/phase").then((response) => {
+      const new_item = [
+        {
+          label: `11:00-11:10 - ${response.data[0]} people`,
+          value: "11:00-11:10",
+        },
+        {
+          label: `11:10-11:20 - ${response.data[1]} people`,
+          value: "11:10-11:20",
+        },
+        {
+          label: `11:20-11:30 - ${response.data[2]} people`,
+          value: "11:20-11:30",
+        },
+        {
+          label: `11:30-11:40 - ${response.data[3]} people`,
+          value: "11:30-11:40",
+        },
+        {
+          label: `11:40-11:50 - ${response.data[4]} people`,
+          value: "11:40-11:50",
+        },
+      ];
+      setItems(new_item);
+    });
+  }, []);
   return (
     <SafeAreaView style={styles.plain}>
       <View

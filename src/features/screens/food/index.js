@@ -68,21 +68,35 @@ export default function Foodscreen() {
         </TouchableOpacity>
         <Text style={styles.title}>Choose your dish | {name}</Text>
       </View>
-      <TouchableOpacity
-        style={{
-          alignSelf: "flex-start",
-          marginTop: 10,
-          marginLeft: 15,
-          flexDirection: "row",
-        }}
-        onPress={() => {
-          console.log("redirect to basket");
-          navigation.navigate("Basket", { no_basket: basket });
-        }}
-      >
-        <FontAwesome5 name="shopping-basket" color={"#DCDCE4"} size={20} />
-        <Text style={[styles.location, { marginLeft: 10 }]}>Basket</Text>
-      </TouchableOpacity>
+      {basket !== { food_list: [] } ? (
+        <TouchableOpacity
+          style={{
+            alignSelf: "flex-start",
+            marginTop: 10,
+            marginLeft: 15,
+            flexDirection: "row",
+          }}
+          onPress={() => {
+            console.log("redirect to basket");
+            navigation.navigate("Basket", { no_basket: basket });
+          }}
+        >
+          <FontAwesome5 name="shopping-basket" color={"#DCDCE4"} size={20} />
+          <Text style={[styles.location, { marginLeft: 10 }]}>Basket</Text>
+        </TouchableOpacity>
+      ) : (
+        <View
+          style={{
+            alignSelf: "flex-start",
+            marginTop: 10,
+            marginLeft: 15,
+            flexDirection: "row",
+          }}
+        >
+          <FontAwesome5 name="shopping-basket" color={"#DCDCE4"} size={20} />
+          <Text style={[styles.location, { marginLeft: 10 }]}>Basket</Text>
+        </View>
+      )}
       <FlatList
         data={food}
         renderItem={({ item }) => (
