@@ -17,6 +17,7 @@ import {
 } from "@expo/vector-icons";
 import { UserContext } from "../../../context/context";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { SafeButtom } from "../../../components/SafeButtom";
 
 export default function Foodscreen() {
   const navigation = useNavigation();
@@ -28,6 +29,7 @@ export default function Foodscreen() {
   const [basket, setbasket] = React.useState({ food_list: [] });
   const [name, setname] = React.useState("");
   useEffect(() => {
+    console.log(basket, "basket");
     axios
       .get(`http://188.166.229.156:3000/restaurant/${restaurant_id}`)
       .then((response) => {
@@ -68,35 +70,21 @@ export default function Foodscreen() {
         </TouchableOpacity>
         <Text style={styles.title}>Choose your dish | {name}</Text>
       </View>
-      {basket !== { food_list: [] } ? (
-        <TouchableOpacity
-          style={{
-            alignSelf: "flex-start",
-            marginTop: 10,
-            marginLeft: 15,
-            flexDirection: "row",
-          }}
-          onPress={() => {
-            console.log("redirect to basket");
-            navigation.navigate("Basket", { no_basket: basket });
-          }}
-        >
-          <FontAwesome5 name="shopping-basket" color={"#DCDCE4"} size={20} />
-          <Text style={[styles.location, { marginLeft: 10 }]}>Basket</Text>
-        </TouchableOpacity>
-      ) : (
-        <View
-          style={{
-            alignSelf: "flex-start",
-            marginTop: 10,
-            marginLeft: 15,
-            flexDirection: "row",
-          }}
-        >
-          <FontAwesome5 name="shopping-basket" color={"#DCDCE4"} size={20} />
-          <Text style={[styles.location, { marginLeft: 10 }]}>Basket</Text>
-        </View>
-      )}
+      <TouchableOpacity
+        style={{
+          alignSelf: "flex-start",
+          marginTop: 10,
+          marginLeft: 15,
+          flexDirection: "row",
+        }}
+        onPress={() => {
+          console.log("redirect to basket");
+          navigation.navigate("Basket", { no_basket: basket });
+        }}
+      >
+        <FontAwesome5 name="shopping-basket" color={"#DCDCE4"} size={20} />
+        <Text style={[styles.location, { marginLeft: 10 }]}>Basket</Text>
+      </TouchableOpacity>
       <FlatList
         data={food}
         renderItem={({ item }) => (
@@ -163,6 +151,7 @@ export default function Foodscreen() {
           </View>
         )}
       />
+      <SafeButtom />
     </SafeAreaView>
   );
 }
@@ -178,8 +167,8 @@ const styles = StyleSheet.create({
     color: "white",
     fontSize: 20,
     fontWeight: "bold",
-    marginTop: 20,
-    marginLeft: 15,
+    // marginTop: 20,
+    marginLeft: 10,
     alignSelf: "flex-start",
     fontFamily: "Roboto",
   },

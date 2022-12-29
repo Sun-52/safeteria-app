@@ -18,6 +18,7 @@ import { deleteData } from "../../../async_storage/storage";
 import { Button } from "react-native-web";
 import { UserContext } from "../../../context/context";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { SafeButtom } from "../../../components/SafeButtom";
 
 export default function Searchscreen() {
   const [que, setque] = React.useState("");
@@ -92,6 +93,7 @@ export default function Searchscreen() {
           }}
         />
       </View>
+      <SafeButtom />
     </SafeAreaView>
   );
 }

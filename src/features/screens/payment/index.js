@@ -14,6 +14,7 @@ import { useRoute } from "@react-navigation/native";
 import { useNavigation } from "@react-navigation/native";
 import DropDownPicker from "react-native-dropdown-picker";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { SafeButtom } from "../../../components/SafeButtom";
 
 export default function Paymentscreen() {
   const route = useRoute();
@@ -264,6 +265,7 @@ export default function Paymentscreen() {
           </View>
         </TouchableOpacity>
       </View>
+      <SafeButtom />
     </SafeAreaView>
   );
 }

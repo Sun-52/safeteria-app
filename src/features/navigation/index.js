@@ -54,9 +54,14 @@ const RootTab = () => {
       screenOptions={{
         headerShown: false,
         tabBarShowLabel: false,
-        style: {
+        tabBarStyle: {
           position: "absolute",
-          borderRadius: 15,
+          borderRadius: 25,
+          marginBottom: 20,
+          marginLeft: 10,
+          marginRight: 10,
+          height: 50,
+          justifyContent: "center",
         },
       }}
     >
@@ -64,7 +69,7 @@ const RootTab = () => {
         name="Home"
         options={{
           tabBarIcon: ({ color, size }) => (
-            <Entypo name="home" size={24} color="black" />
+            <Entypo name="home" size={24} color="grey" />
           ),
         }}
         component={MainStackScreen}

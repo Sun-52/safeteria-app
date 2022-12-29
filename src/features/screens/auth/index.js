@@ -12,6 +12,7 @@ import axios from "axios";
 import { Ionicons, AntDesign } from "@expo/vector-icons";
 import { useRoute } from "@react-navigation/native";
 import { useNavigation } from "@react-navigation/native";
+import { SafeButtom } from "../../../components/SafeButtom";
 
 export default function Authscreen() {
   const route = useRoute();
@@ -38,6 +39,7 @@ export default function Authscreen() {
         </Text>
       </View>
       <Text style={styles.location}>Please show the que to the shop</Text>
+      <SafeButtom />
     </View>
   );
 }

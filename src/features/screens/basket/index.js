@@ -12,6 +12,7 @@ import axios from "axios";
 import { Ionicons, AntDesign } from "@expo/vector-icons";
 import { useRoute } from "@react-navigation/native";
 import { useNavigation } from "@react-navigation/native";
+import { SafeButtom } from "../../../components/SafeButtom";
 import { SafeAreaView } from "react-native-safe-area-context";
 export default function Basketscreen() {
   const navigation = useNavigation();
@@ -143,6 +144,7 @@ export default function Basketscreen() {
           </View>
         </TouchableOpacity>
       </View>
+      <SafeButtom />
     </SafeAreaView>
   );
 }

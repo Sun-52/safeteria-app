@@ -14,6 +14,8 @@ import { useRoute } from "@react-navigation/native";
 import { useNavigation } from "@react-navigation/native";
 import DropDownPicker from "react-native-dropdown-picker";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { SafeButtom } from "../../../components/SafeButtom";
+
 export default function Phasescreen() {
   const { user } = useContext(UserContext);
   const navigation = useNavigation();
@@ -164,6 +166,7 @@ export default function Phasescreen() {
           </TouchableOpacity>
         )}
       </View>
+      <SafeButtom />
     </SafeAreaView>
   );
 }

@@ -18,6 +18,7 @@ import { deleteData } from "../../../async_storage/storage";
 import { Button } from "react-native-web";
 import { UserContext } from "../../../context/context";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { SafeButtom } from "../../../components/SafeButtom";
 
 export default function Detailscreen() {
   const navigation = useNavigation();
@@ -80,6 +81,7 @@ export default function Detailscreen() {
           </Text>
         </View>
       </TouchableOpacity>
+      <SafeButtom />
     </SafeAreaView>
   );
 }
